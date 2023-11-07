@@ -23,4 +23,8 @@ public class Notification {
 
     @Enumerated(EnumType.STRING)
     private NotificationStatus confirmation;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CUSTOMER_ID")
+    private Customer customer;
 }

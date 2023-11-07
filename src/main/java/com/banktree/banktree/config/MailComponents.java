@@ -31,8 +31,10 @@ public class MailComponents {
         try{
             javaMailSender.send(msg);
             result = true;
+            System.out.println("이메일 전송 성공");
         } catch (Exception e){
             e.printStackTrace();
+            System.out.println("이메일 전송 실패");
         }
         return result;
     }

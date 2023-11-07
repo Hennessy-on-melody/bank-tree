@@ -1,5 +1,6 @@
 package com.banktree.banktree.config;
 
+import jakarta.servlet.DispatcherType;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,6 +22,13 @@ public class SecurityConfig {
                 .csrf(CsrfConfigurer::disable)
                 .sessionManagement(SessionManagementConfigurer
                         -> SessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+
+        http
+                .authorizeHttpRequests(requests -> requests
+                        .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
+                        .requestMatchers("/", "/customer/signUp", "/customer/login", "/customer/email-auth/**").permitAll()
+                        .requestMatchers("/customer/**").hasRole("CUSTOMER")
+                        .anyRequest().authenticated());
 
         return http.build();
     }

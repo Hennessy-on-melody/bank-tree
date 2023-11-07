@@ -1,0 +1,46 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/BankTree
+    username: pu
+    password: a1234
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: hennessy.testacc@gmail.com
+    password: ivsobvarkminikzw
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+      properties:
+        hibernate:
+          format_sql:
+    generate-ddl: true
+logging:
+  level:
+    org.hibernate.sql: debug
+    org.hibernate.type: trace
+
+jwt:
+  header: Authorization
+  access:
+    secret: fNIE9oIOJIOQ782oie4nidnok6314iNONLCKNLKQIOEnOIEQPQ98U10ES8381dshiDA9e0
+    token-validity-time: 43200000
+  refresh:
+    secret: fOI90090M09WSWIOMDJO920q09SIj90CNIOMCCWMWE99E2DWDOIDpoNAKZLpojefkinsa03epjop
+    token-validity-time: 43200000
+
+
+
+
