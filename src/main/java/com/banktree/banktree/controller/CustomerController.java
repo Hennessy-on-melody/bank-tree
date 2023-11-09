@@ -2,7 +2,9 @@ package com.banktree.banktree.controller;
 
 
 import com.banktree.banktree.domain.entity.Customer;
+import com.banktree.banktree.domain.form.CustomerLoginForm;
 import com.banktree.banktree.domain.form.CustomerSignUpForm;
+import com.banktree.banktree.domain.form.TokenInfo;
 import com.banktree.banktree.service.CustomerService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -23,6 +25,7 @@ public class CustomerController {
     private final CustomerService customerService;
 
 
+
     @PostMapping("/signUp")
     public ResponseEntity<SignUpResponse> signUp(@RequestBody @Valid SignUpRequest signUpRequest){
         return ResponseEntity.ok(customerService.signUp(signUpRequest));
@@ -35,6 +38,9 @@ public class CustomerController {
         String emailAuthKey = customerService.confirmMail(uuid);
         return ResponseEntity.ok(emailAuthKey);
     }
-//    @GetMapping("/login")
-
+    @GetMapping("/login")
+    public ResponseEntity<TokenInfo> login(@RequestBody @Valid CustomerLoginForm loginForm){
+        TokenInfo customerToken = customerService.login(loginForm);
+        return ResponseEntity.ok(customerToken);
+    }
 }
