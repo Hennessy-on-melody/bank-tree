@@ -17,6 +17,8 @@ public class Account {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CUSTOMER_ID")
     private Customer customer;
-    private String accountNumber;
+    private Long accountNumber;
     private Long amount;
+    @Enumerated(EnumType.STRING)
+    private AccountType accountType;
 }
